@@ -40,7 +40,7 @@ module OAuth::RequestProxy::EventMachine
     end
 
     def post_parameters
-      headers = request.options[:head] || {}
+      headers = request.req.headers || {}
       form_encoded = headers['Content-Type'].to_s.downcase == 'application/x-www-form-urlencoded'
       if ['POST', 'PUT'].include?(method) && form_encoded
         CGI.parse(request.normalize_body.to_s)
