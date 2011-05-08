@@ -68,7 +68,7 @@ class EventMachine::HttpClient
     @normalized_uri ||= begin
       #uri = @uri.dup
       uri = @req.uri.dup
-      encoded_query = encode_query(uri, @req[:query])
+      encoded_query = encode_query(uri, @req.query)
       path, query = encoded_query.split("?", 2)
       uri.query = query unless encoded_query.empty?
       uri.path  = path
@@ -107,7 +107,7 @@ class EventMachine::HttpClient
   end
 
   def set_oauth_header
-    headers = (@req[:head] ||= {})
+    headers = (@req.head ||= {})
     headers['Authorization'] = @oauth_helper.header
   end
 
