@@ -107,7 +107,7 @@ class EventMachine::HttpClient
   end
 
   def set_oauth_header
-    headers = (@req.head ||= {})
+    headers = (@req.headers ||= {})
     headers['Authorization'] = @oauth_helper.header
   end
 
