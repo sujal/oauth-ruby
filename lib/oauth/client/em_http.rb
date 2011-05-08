@@ -72,7 +72,6 @@ class EventMachine::HttpClient
       path, query = encoded_query.split("?", 2)
       uri.query = query unless encoded_query.empty?
       uri.path  = path
-      puts "uri #{uri}"
       uri
     end
   end
