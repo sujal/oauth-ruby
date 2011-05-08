@@ -14,7 +14,7 @@ module OAuth::RequestProxy::EventMachine
     # Request in this con
 
     def method
-      request.method
+      request.req.method
     end
 
     def uri
