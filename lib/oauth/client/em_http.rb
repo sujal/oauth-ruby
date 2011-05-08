@@ -66,8 +66,9 @@ class EventMachine::HttpClient
   # see: http://github.com/igrigorik/em-http-request/commit/d536fc17d56dbe55c487eab01e2ff9382a62598b
   def normalize_uri
     @normalized_uri ||= begin
-      uri = @uri.dup
-      encoded_query = encode_query(@uri, @options[:query])
+      #uri = @uri.dup
+      uri = @req.uri.dup
+      encoded_query = encode_query(uri, @options[:query])
       path, query = encoded_query.split("?", 2)
       uri.query = query unless encoded_query.empty?
       uri.path  = path
@@ -105,7 +106,7 @@ class EventMachine::HttpClient
   end
 
   def set_oauth_header
-    headers = (self.options[:head] ||= {})
+    headers = (@options[:head] ||= {})
     headers['Authorization'] = @oauth_helper.header
   end
 
