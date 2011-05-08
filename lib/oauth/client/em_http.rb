@@ -68,7 +68,7 @@ class EventMachine::HttpClient
     @normalized_uri ||= begin
       #uri = @uri.dup
       uri = @req.uri.dup
-      encoded_query = encode_query(uri, @options[:query])
+      encoded_query = encode_query(uri, options[:query])
       path, query = encoded_query.split("?", 2)
       uri.query = query unless encoded_query.empty?
       uri.path  = path
